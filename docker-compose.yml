@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    container_name: django_estoque_clientes
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persiste apenas a pasta do SQLite na máquina hospedeira
+      - ./data:/app/data
+      # Mapeia o código local para atualizar em tempo real durante o desenvolvimento
+      - .:/app
+    environment:
+      - DEBUG=1
+    restart: unless-stopped
